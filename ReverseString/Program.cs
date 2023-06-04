@@ -13,15 +13,13 @@ namespace ReverseString
 
             string userInput = Console.ReadLine().ToLower();
             int countUp = 0;
-            int countDown = userInput.Length - 1;
 
             for (int i = userInput.Length - 1; i >= 0; i--)
             {
                 Console.Write(userInput[i]);
-                if (userInput[countUp] == userInput[countDown])
+                if (userInput[countUp] == userInput[i])
                 {
                     countUp++;
-                    countDown--;
                 }
             }
             Console.WriteLine("\n");
