@@ -8,13 +8,29 @@ namespace ReverseString
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Weolcome to Reverse String Programm");
-            string userInput = Console.ReadLine();
+            Console.WriteLine("Welcome Lets Have some FUN");
+            Console.WriteLine("Whatever you type will return in reverse");
+
+            string userInput = Console.ReadLine().ToLower();
+            int countUp = 0;
+            int countDown = userInput.Length - 1;
 
             for (int i = userInput.Length - 1; i >= 0; i--)
             {
                 Console.Write(userInput[i]);
+                if (userInput[countUp] == userInput[countDown])
+                {
+                    countUp++;
+                    countDown--;
+                }
             }
+            Console.WriteLine("\n");
+            if (countUp == userInput.Length)
+            {
+                Console.WriteLine("\n\tThis word is Palindrome");
+            }
+            else
+                Console.WriteLine("\n\tThis word NOT Palindrome, which means it doesn't read same backwards!"); 
         }
     }
 }
