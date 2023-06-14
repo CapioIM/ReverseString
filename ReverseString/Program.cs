@@ -1,14 +1,11 @@
-﻿using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System;
 
-namespace ReverseString
+namespace ReverseString // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
             //  A nut for a jar of tuna
             //  Al lets Della call Ed “Stella.”
             //  Amore, Roma.
@@ -24,34 +21,49 @@ namespace ReverseString
                 Console.WriteLine("===========================================================");
                 string userInput = Console.ReadLine();
                 string userOutput = null;
+                bool inputSentence = false;
 
                 for (int i = userInput.Length - 1; i >= 0; i--)
                 {
                     userOutput += userInput[i];
                 }
 
-                if (userInput.Length > 8)
-                    Console.WriteLine($"\tYour written sentence is spelled in reverse:\n{userOutput}");
-                else
-                    Console.WriteLine($"\tYour Word or Number is spelled in Reverse:\n{userOutput}");
-
-                userInput = userInput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "").Replace("9", "6");
-                userOutput = userOutput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "").Replace("9", "6");
-                Console.WriteLine($"Or \n{userOutput}");
-
-                Console.Write("\nAnd ---");
-                if (userInput == userOutput)
+                if (userInput.Contains(" "))
                 {
-                    Console.Write("\tThis word or Phrase is Palindrome Yaaaaaaaay");
+                    Console.WriteLine($"\t\tYour written sentence is spelled in reverse:\n{userOutput}");
+                    inputSentence = true;
                 }
                 else
-                    Console.Write("\tThis word or Phrase is NOT Palindrome, which means it doesn't read same backwards!");
-                Console.WriteLine("\nWould you like to Try again? Y - Yes / N - No");
+                {
+                    Console.WriteLine($"\tYour Word is spelled in Reverse:\n{userOutput}");
+                }
+
+                userInput = userInput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "");
+                userOutput = userOutput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "");
+                Console.WriteLine($"\nOr just letters in reverse: {userOutput}");
+
+                if (userInput == userOutput)
+                {
+                    Console.Write("\nAnd ---  ");
+                    if (inputSentence)
+                    {
+                        Console.Write("This Phrase is Palindrome Yaaaaaaaay");
+                    }
+                    else
+                    {
+                        Console.Write("This Word is Palindrome Yaaaaaaaay");
+                    }
+                }
+                else
+                {
+                    Console.Write("This word or sentence is NOT Palindrome, which means it doesn't read same backwards!");
+                }
+                
+
+                Console.WriteLine("\n\nWould you like to Try again? Y - Yes / N - No");
             }
             while (Console.ReadLine().ToUpper() == "Y");
-            Console.WriteLine("Have a Nice Day, and don't forget to check your phone");
-
-
+            Console.WriteLine("Have a Nice Day, before leaving building , have a look ");
         }
     }
 }
