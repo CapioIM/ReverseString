@@ -1,17 +1,21 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ReverseString // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
+        static string letters = "[^a-zA-Z0-9]";
         static void Main(string[] args)
+
         {
+            //test phrases to pass programm
             //  A nut for a jar of tuna
             //  Al lets Della call Ed “Stella.”
             //  Amore, Roma.
             //  Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.
             //  )(()
-            //  1961
+            //  1961  i don't think theres short code to make numbers upside down as palindromes
 
             do
             {
@@ -23,26 +27,37 @@ namespace ReverseString // Note: actual namespace depends on the project name.
                 string userOutput = null;
                 bool inputSentence = false;
 
-                for (int i = userInput.Length - 1; i >= 0; i--)
+                for (int i = 0; i <= userInput.Length - 1; i++)
                 {
-                    userOutput += userInput[i];
+                    userOutput = userInput[i] + userOutput;
                 }
 
-                if (userInput.Contains(" "))
+                foreach (char s in userInput)
                 {
-                    Console.WriteLine($"\t\tYour written sentence is spelled in reverse:\n{userOutput}");
-                    inputSentence = true;
+                    if (char.IsWhiteSpace(s))
+                    {
+                        inputSentence = true;
+                    }
+                    if (inputSentence == true)
+                    {
+                        break;
+                    }
+                }
+                if (inputSentence)
+                {
+                    Console.WriteLine($"Your written sentence is spelled in reverse: {userOutput}");
                 }
                 else
                 {
-                    Console.WriteLine($"\tYour Word is spelled in Reverse:\n{userOutput}");
+                    Console.WriteLine($"Your Word is spelled in Reverse: {userOutput}");
                 }
 
-                userInput = userInput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "");
-                userOutput = userOutput.ToLower().Replace(" ", "").Replace(",", "").Replace(".", "").Replace("“", "").Replace("?", "").Replace("!", "").Replace("-", "").Replace(".", "").Replace("\"", "").Replace("\'", "");
-                Console.WriteLine($"\nOr just letters in reverse: {userOutput}");
+                string userInputWithoutWhiteSpace = Regex.Replace(userInput, letters, "").ToLower();
+                string userOutputWithoutWhiteSpace = Regex.Replace(userOutput, letters, "").ToLower();
 
-                if (userInput == userOutput)
+                Console.WriteLine($"Or just letters in reverse: {userOutputWithoutWhiteSpace}");
+
+                if (userInputWithoutWhiteSpace == userOutputWithoutWhiteSpace)
                 {
                     Console.Write("\nAnd ---  ");
                     if (inputSentence)
@@ -51,19 +66,19 @@ namespace ReverseString // Note: actual namespace depends on the project name.
                     }
                     else
                     {
-                        Console.Write("This Word is Palindrome Yaaaaaaaay");
+                        Console.Write("This Word is Palindrome Yay");
                     }
                 }
                 else
                 {
-                    Console.Write("This word or sentence is NOT Palindrome, which means it doesn't read same backwards!");
+                    Console.WriteLine("This word or sentence is NOT Palindrome, which means it doesn't read same backwards!");
                 }
-                
+
 
                 Console.WriteLine("\n\nWould you like to Try again? Y - Yes / N - No");
             }
             while (Console.ReadLine().ToUpper() == "Y");
-            Console.WriteLine("Have a Nice Day, before leaving building , have a look ");
+            Console.WriteLine("Have a Nice Day");
         }
     }
 }
