@@ -5,7 +5,7 @@ namespace ReverseString // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-        static string letters = "[^a-zA-Z0-9]";
+        static string lettersAndNumbersOnly = "[^a-zA-Z0-9]";
         static void Main(string[] args)
 
         {
@@ -20,8 +20,8 @@ namespace ReverseString // Note: actual namespace depends on the project name.
             do
             {
                 Console.WriteLine("===========================================================");
-                Console.WriteLine("Welcome Lets Have some FUN");
-                Console.WriteLine("Whatever you type will return in reverse (Or Upside Down ?)");
+                Console.WriteLine("Welcome Lets Have Some FUN");
+                Console.WriteLine("Whatever you type will return in reverse!");
                 Console.WriteLine("===========================================================");
                 string userInput = Console.ReadLine();
                 string userOutput = null;
@@ -32,28 +32,29 @@ namespace ReverseString // Note: actual namespace depends on the project name.
                     userOutput = userInput[i] + userOutput;
                 }
 
-                foreach (char s in userInput)
+                foreach (char s in userInput)      // check for whitespaces in userInput
                 {
                     if (char.IsWhiteSpace(s))
                     {
                         inputSentence = true;
                     }
-                    if (inputSentence == true)
+                    if (inputSentence)
                     {
                         break;
                     }
                 }
+
                 if (inputSentence)
                 {
                     Console.WriteLine($"Your written sentence is spelled in reverse: {userOutput}");
                 }
                 else
                 {
-                    Console.WriteLine($"Your Word is spelled in Reverse: {userOutput}");
+                    Console.WriteLine($"Your word is spelled in Reverse: {userOutput}");
                 }
 
-                string userInputWithoutWhiteSpace = Regex.Replace(userInput, letters, "").ToLower();
-                string userOutputWithoutWhiteSpace = Regex.Replace(userOutput, letters, "").ToLower();
+                string userInputWithoutWhiteSpace = Regex.Replace(userInput, lettersAndNumbersOnly, "").ToLower();
+                string userOutputWithoutWhiteSpace = Regex.Replace(userOutput, lettersAndNumbersOnly, "").ToLower();
 
                 Console.WriteLine($"Or just letters in reverse: {userOutputWithoutWhiteSpace}");
 
@@ -71,11 +72,17 @@ namespace ReverseString // Note: actual namespace depends on the project name.
                 }
                 else
                 {
-                    Console.WriteLine("This word or sentence is NOT Palindrome, which means it doesn't read same backwards!");
+                    if (inputSentence)
+                    {
+                        Console.WriteLine("This sentence is NOT Palindrome, which means it doesn't read same backwards!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("This word is NOT Palindrome, which means it doesn't read same backwards!");
+                    }
                 }
 
-
-                Console.WriteLine("\n\nWould you like to Try again? Y - Yes / N - No");
+                Console.WriteLine("\n\nWould you like to repeat? Y - Yes / N - No");
             }
             while (Console.ReadLine().ToUpper() == "Y");
             Console.WriteLine("Have a Nice Day");
