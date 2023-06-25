@@ -53,39 +53,61 @@ namespace ReverseString // Note: actual namespace depends on the project name.
                     Console.WriteLine($"Your word is spelled in Reverse: {userOutput}");
                 }
 
-                string userInputWithoutWhiteSpace = Regex.Replace(userInput, lettersAndNumbersOnly, "").ToLower();
-                string userOutputWithoutWhiteSpace = Regex.Replace(userOutput, lettersAndNumbersOnly, "").ToLower();
+                // Just commented 2 lines under to use an array for phrase comparison, because i have noticed that i am not that much familiar with array
 
-                Console.WriteLine($"Or just letters in reverse: {userOutputWithoutWhiteSpace}");
+                //string userInputWithoutSpecialCharacters = Regex.Replace(userInput, lettersAndNumbersOnly, "").ToLower();
+                //string userOutputWithoutSpecialCharacters = Regex.Replace(userOutput, lettersAndNumbersOnly, "").ToLower();
 
-                if (userInputWithoutWhiteSpace == userOutputWithoutWhiteSpace)
+                //Array with special characters to remove from phrase and later to compare for Palindrome
+                char[] specialCharactersToRemove = { '´', '&', '<', '>', '=', '’', '\'', '*', '@', '\\', '{', '}', '[', ']', '^', '«', '»', '©', '†', '°', '÷', '$', '…', '—', '–', '€', '!', '`', '>', '≥', '-', '\"', '<', '≤', '–', '×', '≠', '#', '¶', '(', ')', '%', 'π', '|', '+', '±', '?', '“', '”', '\"', '\"', '‘', '’', '\'', '\'', '®', '§', '/', '~', '™', '_', ' ', };
+
+                foreach (char k in specialCharactersToRemove)
                 {
-                    Console.Write("\nAnd ---  ");
-                    if (inputSentence)
+                    foreach (char c in userInput)
                     {
-                        Console.Write("This Phrase is Palindrome Yaaaaaaaay");
+                        if (k == c)
+                        {
+                            Console.WriteLine(true);
+                        }
+                        else
+                        {
+                            Console.WriteLine(false);
+                        }
                     }
-                    else
-                    {
-                        Console.Write("This Word is Palindrome Yay");
-                    }
+                }
+            
+
+                //Console.WriteLine($"Or just letters in reverse: {userOutputWithoutSpecialCharacters}");
+
+            //if (userInputWithoutSpecialCharacters == userOutputWithoutSpecialCharacters)
+                if (userInput == userOutput)
+            {
+                Console.Write("\nAnd ---  ");
+                if (inputSentence)
+                {
+                    Console.Write("This Phrase is Palindrome Yaaaaaaaay");
                 }
                 else
                 {
-                    if (inputSentence)
-                    {
-                        Console.WriteLine("This sentence is NOT Palindrome, which means it doesn't read same backwards!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("This word is NOT Palindrome, which means it doesn't read same backwards!");
-                    }
+                    Console.Write("This Word is Palindrome Yay");
                 }
-
-                Console.WriteLine("\n\nWould you like to repeat? Y - Yes / N - No");
             }
+            else
+            {
+                if (inputSentence)
+                {
+                    Console.WriteLine("This sentence is NOT Palindrome, which means it doesn't read same backwards!");
+                }
+                else
+                {
+                    Console.WriteLine("This word is NOT Palindrome, which means it doesn't read same backwards!");
+                }
+            }
+
+            Console.WriteLine("\n\nWould you like to repeat? Y - Yes / N - No");
+        }
             while (Console.ReadLine().ToUpper() == "Y");
             Console.WriteLine("Have a Nice Day");
         }
-    }
+}
 }
