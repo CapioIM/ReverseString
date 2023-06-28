@@ -82,11 +82,12 @@ Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage
                  */
 
                 // split string method
-                string[] separator = { "´", "&", "<", ">", "=", "’", "\'", "*", "@", "\\", "{", "}", "[", "]", "^", "«", "»", "©", "†", "°", "÷", "$", "…", "—", "–", "€", "!", "`", ">", "≥", "-", "\"", "<", "≤", "–", "×", "≠", "#", "¶", "(", ")", "%", "π", "|", "+", "±", "?", "“", "”", "\"", "\"", "‘", "’", "\'", "\'", "®", "§", "/", "~", "™", "_", " ", ".", ",", };
+                string[] separator = { "´", "&", "<", ">", "=", "’", "\'", "*", "@", "\\", "{", "}", "[", "]", "^", "«", "»", "©", "†", "°", "÷", "$", "…", "—", "–", "€", "!", "`", ">", "≥", "-", "\"", "<", "≤", "–", "×", "≠", "#", "¶", "%", "π", "|", "+", "±", "?", "“", "”", "\"", "\"", "‘", "’", "\'", "\'", "®", "§", "/", "~", "™", "_", " ", ".", ",", };
                 string[] userInputArray = userInput.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 string userInputWithoutSpecialCharacters = string.Join("", userInputArray).ToLower();
                 string[] userOutputArray = userOutput.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 string userOutputWithoutSpecialCharacters = string.Join("", userOutputArray).ToLower();
+
 
                 Console.WriteLine($"Or just letters in reverse: {userOutputWithoutSpecialCharacters}");
                 if (userInputWithoutSpecialCharacters == userOutputWithoutSpecialCharacters)
